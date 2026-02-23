@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://gra-porto.vercel.app"; // Ganti dengan domain kamu
+const BASE_URL = "https://galangrizkyarridho.my.id"; // Ganti dengan domain kamu
 
 export default function robots(): MetadataRoute.Robots {
   return {

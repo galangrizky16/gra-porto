@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@variant dark (&:is(.dark *));
+
+/*
+ * ── Theme Base ──────────────────────────────────────────────────────────────
+ * PENTING: Jangan set background-color di sini tanpa kondisi .dark
+ * karena akan menyebabkan flash putih saat navigasi di dark mode.
+ * Biarkan background dikontrol sepenuhnya oleh class .dark di <html>.
+ */
+
+html {
+  color-scheme: light;
+  /* TIDAK ada background-color di sini agar tidak flash */
+}
+
+html.dark {
+  background-color: #0f172a;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  /* Ikut background html, tidak di-override */
+  background-color: inherit;
+}
+
+/*
+ * ── Global Transition untuk Dark/Light Toggle ───────────────────────────────
+ * Hanya background-color, border-color, color — BUKAN semua properti
+ * agar tidak bentrok dengan animasi Framer Motion / Tailwind.
+ */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/*
+ * ── Reset transition untuk elemen animasi ───────────────────────────────────
+ * Elemen dengan class transisi/animasi dari Tailwind atau Framer
+ * tidak boleh tertimpa oleh global transition di atas.
+ */
+img,
+video,
+svg,
+canvas,
+[class*="transition-"],
+[class*="animate-"],
+[class*="duration-"] {
+  transition-property: revert;
+}

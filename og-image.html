@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0b1120;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #f1f5f9;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 85% 50%, rgba(99,102,241,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 10% 80%, rgba(16,185,129,0.10) 0%, transparent 65%),
+      linear-gradient(135deg, #0b1120 0%, #0f172a 60%, #0b1120 100%);
+  }
+
+  /* Grid dots */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(99,102,241,0.25) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 900px 500px at 50% 50%, black 30%, transparent 80%);
+  }
+
+  /* Decorative lines */
+  .line-h {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3), rgba(16,185,129,0.2), transparent);
+  }
+  .line-h.top { top: 80px; }
+  .line-h.bottom { bottom: 80px; }
+
+  .line-v {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(99,102,241,0.2), transparent);
+  }
+  .line-v.left { left: 80px; }
+  .line-v.right { right: 80px; }
+
+  /* Corner accents */
+  .corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: rgba(99,102,241,0.6);
+    border-style: solid;
+  }
+  .corner.tl { top: 68px; left: 68px; border-width: 2px 0 0 2px; }
+  .corner.tr { top: 68px; right: 68px; border-width: 2px 2px 0 0; }
+  .corner.bl { bottom: 68px; left: 68px; border-width: 0 0 2px 2px; }
+  .corner.br { bottom: 68px; right: 68px; border-width: 0 2px 2px 0; }
+
+  /* Main content */
+  .content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 100px;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.35);
+    border-radius: 999px;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #6ee7b7;
+    box-shadow: 0 0 8px rgba(110,231,183,0.8);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .badge-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #a5b4fc;
+    letter-spacing: 0.08em;
+  }
+
+  /* Name */
+  .name {
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Role */
+  .role {
+    font-size: 22px;
+    font-weight: 400;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    letter-spacing: 0.01em;
+  }
+  .role span {
+    color: #6ee7b7;
+    font-weight: 600;
+  }
+
+  /* Tech stack pills */
+  .stack {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: rgba(15,23,42,0.8);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #cbd5e1;
+    letter-spacing: 0.04em;
+  }
+
+  /* Right side decoration */
+  .deco {
+    position: absolute;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .avatar-ring {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(16,185,129,0.3));
+    padding: 2px;
+    position: relative;
+  }
+  .avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: 700;
+    color: #a5b4fc;
+    letter-spacing: -0.05em;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* Floating code snippet */
+  .code-card {
+    position: absolute;
+    right: 80px;
+    bottom: 100px;
+    background: rgba(15,23,42,0.9);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #64748b;
+    z-index: 20;
+    line-height: 1.7;
+    backdrop-filter: blur(8px);
+  }
+  .code-card .kw { color: #818cf8; }
+  .code-card .fn { color: #6ee7b7; }
+  .code-card .str { color: #fbbf24; }
+
+  /* URL bottom */
+  .url-bar {
+    position: absolute;
+    bottom: 28px;
+    right: 100px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: rgba(99,102,241,0.5);
+    letter-spacing: 0.06em;
+    z-index: 20;
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <div class="line-h top"></div>
+  <div class="line-h bottom"></div>
+  <div class="line-v left"></div>
+  <div class="line-v right"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="content">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">PORTFOLIO · 2025</span>
+    </div>
+    <div class="name">Galang Rizky<br>Arridho</div>
+    <div class="role">Web Developer &amp; <span>Designer</span></div>
+    <div class="stack">
+      <span class="pill">Next.js</span>
+      <span class="pill">React</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Laravel</span>
+      <span class="pill">PHP</span>
+    </div>
+  </div>
+
+  <div class="deco">
+    <div class="avatar-ring">
+      <div class="avatar-inner">GRA</div>
+    </div>
+  </div>
+
+  <div class="code-card">
+    <span class="kw">const</span> dev = {<br>
+    &nbsp;&nbsp;name: <span class="str">"Galang"</span>,<br>
+    &nbsp;&nbsp;stack: <span class="fn">["Next.js", "TS"]</span>,<br>
+    &nbsp;&nbsp;location: <span class="str">"Jakarta 🇮🇩"</span><br>
+    }
+  </div>
+
+  <div class="url-bar">galangrizkyarridho.my.id</div>
+</body>
+</html>

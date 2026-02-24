@@ -9,10 +9,25 @@ export const metadata: Metadata = {
     title: "Galang Rizky Arridho — Web Developer",
     description:
       "Seorang Web Developer dan kreator konten coding yang berdedikasi untuk membangun solusi digital yang berdampak.",
-    url: "https://gra-porto.vercel.app",
-    siteName: "Gra Porto",
+    url: "https://www.galangrizkyarridho.my.id/",
+    siteName: "Galang Rizky Arridho",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "https://www.galangrizkyarridho.my.id/og-image.png",
+        width: 2400,
+        height: 1260,
+        alt: "Galang Rizky Arridho — Web Developer & Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Galang Rizky Arridho — Web Developer",
+    description:
+      "Seorang Web Developer dan kreator konten coding yang berdedikasi untuk membangun solusi digital yang berdampak.",
+    images: ["https://www.galangrizkyarridho.my.id/og-image.png"],
   },
 };
 
